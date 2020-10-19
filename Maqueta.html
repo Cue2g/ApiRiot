@@ -2,54 +2,151 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.8/dist/css/uikit.min.css" />
     <link rel="stylesheet" href="aaa.css">
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.8/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.8/dist/js/uikit-icons.min.js"></script>
 
 </head>
 
 <body>
+
+
+    <nav class="uk-navbar-container uk-margin" uk-navbar>
+
+        <div class="nav-overlay uk-navbar-left">
+
+            <a class="uk-navbar-item uk-logo" href="#">Api Riot</a>
+
+        </div>
+        <div class="nav-overlay uk-navbar-right">
+
+            <a class="uk-navbar-toggle" uk-search-icon uk-toggle="target: .nav-overlay; animation: uk-animation-fade"
+                href="#"></a>
+
+        </div>
+
+        <div class="nav-overlay uk-navbar-left uk-flex-1" hidden>
+
+            <div class="uk-navbar-item uk-width-expand">
+                <form class="uk-search uk-search-navbar uk-width-1-1">
+                    <input class="uk-search-input" type="search" placeholder="Ingrese el nombre de invocador..."
+                        autofocus>
+                    <div class="uk-margin-top">
+                        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                            <label><input class="uk-radio" type="radio" name="radio2" checked> LAN</label>
+                            <label><input class="uk-radio" type="radio" name="radio2"> LAS</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <a class="uk-navbar-toggle" uk-close uk-toggle="target: .nav-overlay; animation: uk-animation-fade"
+                href="#"></a>
+
+        </div>
+
+    </nav>
+
     <div class="uk-section">
         <div class="uk-container">
-            <div class="uk-text-center" uk-grid>
-                <div class="uk-width-1-4 uk-animation-slide-top">
-                    <div class="uk-card uk-card-default uk-card-body">
+            <div class="" uk-grid>
 
-                        <div class="uk-wdth-1-1 infos">
 
-                            <div>
-                            <img class="iconosummoner"
-                                src="http://ddragon.leagueoflegends.com/cdn/10.21.1/img/profileicon/520.png">
-                                <span class="lvl">160</span>
+
+                <div class="uk-width-1-1 uk-animation-slide-top">
+                    <div class="uk-card uk-card-default uk-card-body" id="Infosummoner">
+
+
+                        <div class="izquierdainfo">
+                            <div class="div1info">
+                                <img class="iconosummoner"
+                                    src="http://ddragon.leagueoflegends.com/cdn/10.21.1/img/profileicon/520.png">
+                                    <span class="lvl">160</span>
                             </div>
-
-
-
-                            <div class="uk-margin-top" uk-grid>
-                                <div class="uk-wdth-2-4">
-                                    <h4>Nombre:</h4>
-                                </div>
-                                <div class="uk-wdth-2-4">
-                                    <h4>Cue</h4>
-                                </div>
+                            <div class="div1nombre">
+                                <h1>Cue</h1>
                             </div>
-
-
-
-
-                            
                         </div>
 
+                        <div class="derechainfo">
+                            <div class="div1rango">
+                                <span>Rango</span>
+                            </div>
+                        </div>
+
+
+                           
+              
 
 
                     </div>
                 </div>
-                <div class="uk-width-3-4">
-                    <div class="uk-card uk-card-default uk-card-body">3-4</div>
+
+                <div class="uk-width-1-1">
+                    <div class="uk-card uk-card-default uk-card-body" id="TablaVS">
+
+
+                        <div class="container">
+                            <ul uk-accordion="multiple: true; duration:1000;">
+                                <li>
+                                    <a class="uk-accordion-title" href="#">Hey</a>
+                                    <div class="uk-accordion-content">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                            tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a class="uk-accordion-title" href="#">Item 2</a>
+                                    <div class="uk-accordion-content">
+                                        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                                            aliquip ex ea commodo consequat. Duis aute irure dolor reprehenderit.</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a class="uk-accordion-title" href="#">Item 3</a>
+                                    <div class="uk-accordion-content">
+                                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                                            eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat proident.</p>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <a class="uk-accordion-title" href="#">Item 3</a>
+                                    <div class="uk-accordion-content">
+                                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                                            eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat proident.</p>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <a class="uk-accordion-title" href="#">Item 3</a>
+                                    <div class="uk-accordion-content">
+                                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                                            eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat proident.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h1>VS</h1>
+                        </div>
+
+                        <div class="container">
+                            xdd
+                        </div>
+
+
+
+
+
+                    </div>
                 </div>
             </div>
         </div>
