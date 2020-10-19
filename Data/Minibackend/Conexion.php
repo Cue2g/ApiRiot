@@ -14,51 +14,25 @@ $apikey = 'RGAPI-2a113d6e-384e-4aec-8734-96cc9b5be525';
 
 
 ///funciones
-function get_contents($http)
+
+
+class Apis
 {
-    $json = @file_get_contents($http);
-    global $Statusapi1;
-    global $cuenta;
-    $cuenta = json_decode($json, true);
-    $Statusapi1 = $http_response_header[0];
-}
+    public $apilink;
+    public $apijson;
+    public $apistado;
+    public $respuestaapi;
 
-function get_live($http)
-{
-    $json = @file_get_contents($http);
-    global $Statusapi2;
-    global $cuentalive;
-    $cuentalive = json_decode($json, true);
-    $Statusapi2 = $http_response_header[0];
-}
-
-function filtroEstatus($Variable)
-{
-    global $Stapi1;
-    $Stapi1 = explode(" ", $Variable)[1];
-}
-
-Class Apis{
- public $apilink;
- public $liveapi;
- public $apistado;
-
- public function llamarapi(){
-    $json = @file_get_contents($this->apilink);
-    $this->liveapi = json_decode($json, true);
-    $this->apistado = $http_response_header[0];
- }
+    public function llamarapi()
+    {
+        $json = @file_get_contents($this->apilink);
+        $this->apijson = json_decode($json, true);
+        $this->apistado = $http_response_header[0];
+        $this->respuestaapi = explode(" ", $this->apistado)[1];
+    }
 }
 
 
-
-$apicuenta = new Apis;
-
-$apicuenta -> apilink = 'https://americas.api.riotgames.com/riot/account/v1/accounts/by-puuid/aAcgMhXO9BYRApk-lqCrdkFZWFrioa-1JSdX3gtMVVwibTk3-TUZQktar35Z3FQ6_AK2-RHs5bruEQ?api_key=RGAPI-2a113d6e-384e-4aec-8734-96cc9b5be525';
-
-
-$apicuenta -> llamarapi();
-var_dump($apicuenta -> liveapi);
 
 ///Procesos
 if (isset($_GET['summoner'])) {
@@ -76,13 +50,15 @@ if (isset($_GET['summoner'])) {
             }
         }
 
-        $url_1 = "https://" . $regionc . ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" . $summoner . "?api_key=".$apikey;
-        get_contents($url_1);
-        // echo '<br>' . $Statusapi1 . '<br>';
-        filtroEstatus($Statusapi1);
-        // echo $Stapi1;
+        $url_1 = "https://" . $regionc . ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" . $summoner . "?api_key=" . $apikey;
 
-        switch ($Stapi1) {
+        $apicuentasummoner = new Apis;
+        $apicuentasummoner->apilink = $url_1;
+        $apicuentasummoner->llamarapi();
+        echo $apicuentasummoner -> respuestaapi;
+
+
+        switch ($apicuentasummoner -> respuestaapi) {
             case 404:
                 echo 'no se encontro nada';
                 goto fin;
@@ -90,7 +66,7 @@ if (isset($_GET['summoner'])) {
 
             case 200:
                 // echo 'todo okey';
-                echo '<pre>' . print_r($cuenta, true) . '</pre>';
+                echo '<pre>' . print_r($apicuentasummoner -> apijson, true) . '</pre>';
                 goto loadlive;
                 break;
 
@@ -111,22 +87,26 @@ if (isset($_GET['summoner'])) {
 
 
 loadlive:
-$url_live = "https://la1.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/" . $cuenta["id"] . "?api_key=".$apikey;
-get_live($url_live);
-filtroEstatus($Statusapi2);
+$url_live = "https://la1.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/" . $apicuentasummoner -> apijson["id"] . "?api_key=" . $apikey;
 
 
-switch ($Stapi1) {
+$espectadorapi = new Apis;
+$espectadorapi -> apilink = $url_live;
+$espectadorapi -> llamarapi();
+
+
+
+switch ($espectadorapi -> respuestaapi) {
     case 404:
         echo 'No live';
         goto fin;
         break;
 
     case 200:
-        echo '<pre>' . print_r($cuentalive, true) . '</pre>';
+        echo '<pre>' . print_r($espectadorapi -> apijson , true) . '</pre>';
         break;
 
     default:
-        echo 'Algo salio mal';
+        echo 'Algo salio mal 2';
         die;
 }
