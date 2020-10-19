@@ -10,7 +10,7 @@ $championlive = json_decode($champions, true);
 $summoner = '';
 $region = '';
 $regionc = '';
-$apikey = 'RGAPI-b36fe927-0783-4c23-9e2c-1819932ab3ba';
+$apikey = 'RGAPI-2a113d6e-384e-4aec-8734-96cc9b5be525';
 
 
 ///funciones
@@ -38,7 +38,27 @@ function filtroEstatus($Variable)
     $Stapi1 = explode(" ", $Variable)[1];
 }
 
+Class Apis{
+ public $apilink;
+ public $liveapi;
+ public $apistado;
 
+ public function llamarapi(){
+    $json = @file_get_contents($this->apilink);
+    $this->liveapi = json_decode($json, true);
+    $this->apistado = $http_response_header[0];
+ }
+}
+
+
+
+$apicuenta = new Apis;
+
+$apicuenta -> apilink = 'https://americas.api.riotgames.com/riot/account/v1/accounts/by-puuid/aAcgMhXO9BYRApk-lqCrdkFZWFrioa-1JSdX3gtMVVwibTk3-TUZQktar35Z3FQ6_AK2-RHs5bruEQ?api_key=RGAPI-2a113d6e-384e-4aec-8734-96cc9b5be525';
+
+
+$apicuenta -> llamarapi();
+var_dump($apicuenta -> liveapi);
 
 ///Procesos
 if (isset($_GET['summoner'])) {
